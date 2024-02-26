@@ -1,14 +1,14 @@
-const Calculadora = require("./Calculadora");
+const displayValorAnterior = document.getElementById('valor-anterior');
+const displayValorActual = document.getElementById('valor-actual');
+const botonesNumeros = document.querySelectorAll('.numero');
+const botonesOperadores = document.querySelectorAll('.operador');
 
-let calc = new Calculadora();
+const display = new Display(displayValorAnterior, displayValorActual);
 
-calc.somar(10);
+botonesNumeros.forEach(boton => {
+    boton.addEventListener('click', () => display.agregarNumero(boton.innerHTML));
+});
 
-calc.subtrair(5);
-
-calc.multiplicar(3);
-
-calc.dividir(2);
-
-
-calc = null; // libera a memória ocupada pelo objeto calc7
+botonesOperadores.forEach(boton => {
+    boton.addEventListener('click', () => display.computar(boton.value))
+});
